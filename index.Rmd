@@ -1,0 +1,77 @@
+---
+logo        : slidify_logo_small.png
+title       : Pitch for Simple Shiny App
+subtitle    : Prepared for Data Products course on Coursera
+author      : jean-rodrigues
+job         : Agenda - Intro, About the app, Screenshots, Conclusion.
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : prettify  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [bootstrap]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+ext_widgets : {rCharts: libraries/nvd3}
+knit        : slidify::knit2slides
+assets:
+  js:
+    - "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
+    - "http://bartaz.github.io/sandbox.js/jquery.highlight.js"
+
+---
+## 1. Introduction
+
+The Simple Shiny App is a Shiny App published in shinyapps.io.
+
+The application collects some information about the user, does some processing and
+presents a multi bar chart filtered by the data provided by the user.
+
+The application is accessible at: https://jean-rodrigues.shinyapps.io/simpleShinyApp/
+
+---
+## 2. About the Application
+
+The application makes use of the dataset named HairEyeColor, avaiable with R.
+
+When the user provides its hair color and sex information, the application exhibits some info
+about the user and its age and presents a chart filtering the dataset by the sex and hair data provided.
+
+```{r, results='asis', echo=F, warning=FALSE, message=FALSE}
+require(rCharts)
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = subset(data.frame(HairEyeColor), Sex=="Male"), type = "multiBarChart")
+n1$xAxis(axisLabel = "Hair for Male")
+n1$yAxis(axisLabel = "Freq", width = 40)
+n1$print("chart1")
+```
+
+--- 
+## 3. Screenshots
+
+<!-- Limit image width and height -->
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+}
+</style>
+
+<!-- Center image on slide -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+<div style='text-align: center; border: 2px solid;'>
+    <img height='460' src='app.png' />
+</div>
+
+
+
+---
+## 4. Conclusion
+
+This simple application and this presentation were aimed at achieving the following:
+- Understanding of slidify customization;
+- Developing simple Shiny apps and embedding rCharts;
+- Developing interaction with the user and understanding of reactive functions in Shiny;
+- Publishing Shiny apps and Slidify presentations.
+
