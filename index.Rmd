@@ -36,7 +36,7 @@ about the user and its age and presents a chart filtering the dataset by the sex
 
 ```{r, results='asis', echo=F, warning=FALSE, message=FALSE}
 require(rCharts)
-n1 <- nPlot(Freq ~ Hair, group = "Eye", data = subset(data.frame(HairEyeColor), Sex=="Male"), type = "multiBarChart")
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = subset(data.frame(HairEyeColor), Sex=="Male"), type = "multiBarChart", width = 650)
 n1$xAxis(axisLabel = "Hair for Male")
 n1$yAxis(axisLabel = "Freq", width = 40)
 n1$print("chart1")
