@@ -5,12 +5,11 @@ subtitle    : Prepared for Data Products course on Coursera
 author      : jean-rodrigues
 job         : Agenda - Intro, About the app, Screenshots, Conclusion.
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : prettify  # {highlight.js, prettify, highlight}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : [bootstrap]            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
-ext_widgets : {rCharts: libraries/nvd3}
-knit        : slidify::knit2slides
+ext_widgets     : {rCharts: ["libraries/highcharts", "libraries/nvd3", "libraries/morris"]}        
 assets:
   js:
     - "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
@@ -33,14 +32,23 @@ The application makes use of the dataset named HairEyeColor, avaiable with R.
 
 When the user provides its hair color and sex information, the application exhibits some info
 about the user and its age and presents a chart filtering the dataset by the sex and hair data provided.
-
-```{r, results='asis', echo=F, warning=FALSE, message=FALSE}
+```{r setup, message = F, echo = F, cache = F}
 require(rCharts)
-n1 <- nPlot(Freq ~ Hair, group = "Eye", data = subset(data.frame(HairEyeColor), Sex=="Male"), type = "multiBarChart", width = 650)
+require(base64enc)
+knitr::opts_chunk$set(comment = NA, results = 'asis', tidy = F, message = T)
+```
+
+```{r chart1, echo=F}
+knitr::opts_chunk$set(comment = NA, results = 'asis', tidy = F, message = T)
+#options(rcharts.mode = 'iframesrc', cdn = TRUE)
+n1 <- nPlot(Freq ~ Hair, group = "Eye", data = subset(data.frame(HairEyeColor), Sex=="Male"), type = "multiBarChart", width = 800)
+n1$chart(stacked = F)
 n1$xAxis(axisLabel = "Hair for Male")
 n1$yAxis(axisLabel = "Freq", width = 40)
-n1$print("chart1")
+#n1$save('Figure_1_1.html')
+#n1$print("chart1")
 ```
+<iframe src ='Figure_1_1.html', width = "860px", height = "450px"></iframe>
 
 --- 
 ## 3. Screenshots
