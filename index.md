@@ -43,7 +43,7 @@ about the user and its age and presents a chart filtering the dataset by the sex
     function drawchart1(){  
       var opts = {
  "dom": "chart1",
-"width":    800,
+"width":    650,
 "height":    400,
 "x": "Hair",
 "y": "Freq",
